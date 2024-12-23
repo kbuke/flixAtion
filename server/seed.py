@@ -5,7 +5,7 @@ from datetime import date
 
 import os
 
-from models import Accounts, ActorDirector, Media, TvShow
+from models import Accounts, ActorDirector, Media, TvShow, MediaCast, Genres, UserGenres, MediaGenres
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -85,6 +85,44 @@ if __name__=="__main__":
             lotr_1,
             breaking_bad
         ])
+        db.session.commit()
+
+        print("Seeding film cast")
+        lotr_1_cast=MediaCast(
+            billing=1,
+            media_id=1,
+            actor_director_id=1
+        )
+        lotr_2_cast=MediaCast(
+            billing=2,
+            media_id=1,
+            actor_director_id=2
+        )
+        db.session.add_all([lotr_1_cast, lotr_2_cast])
+        db.session.commit()
+
+        print("Seeding genres")
+        action=Genres(
+            genre="Action",
+            image="https://egreg.io/wp-content/uploads/furiosa_trailer_1701414287845-3298309724.jpg"
+        )
+        db.session.add_all([action])
+        db.session.commit()
+
+        print("Seeding user fave genres")
+        user1_genre1=UserGenres(
+            user_id=1,
+            genre_id=1
+        )
+        db.session.add_all([user1_genre1])
+        db.session.commit()
+
+        print("Seeding film genres")
+        lotr1_action=MediaGenres(
+            genre_id=1,
+            media_id=1
+        )
+        db.session.add_all([lotr1_action])
         db.session.commit()
 
         print("Finished seeding")
