@@ -33,3 +33,9 @@
     justify-self: center;
     align-self: center;
 }
+
+#signUpLogo{
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}

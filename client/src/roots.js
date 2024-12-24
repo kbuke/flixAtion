@@ -19,6 +19,10 @@ const routes = [
                 {
                     path: '/',
                     element: <SignUp />
+                },
+                {
+                    path: '/',
+                    element: <Home />
                 }
             ]
         }]

@@ -5,8 +5,11 @@ import "./SignUp.css"
 import SignIn from "./Components/1.01-SignIn"
 import SignUpContainer from "./Components/1.02-SignUpContainer"
 
+import logo from "../../assets/Logo.png"
+
 export default function SignUp({
-    setAccounts
+    setAccounts,
+    setLoggedUser
 }){
     //set state
     const [signInUp, setSignInUp] = useState("In")
@@ -41,6 +44,10 @@ export default function SignUp({
                 backgroundImage: `url(${signInBackground})`
             }}
         >  
+            <img 
+                src={logo}
+                id="signUpLogo"
+            />
             <div
                 id={signInUp === "In"? "signInContainer" : "signUpContainer"}
             >
@@ -53,7 +60,9 @@ export default function SignUp({
                 </h3>
 
                 {signInUp === "In"?
-                    <SignIn />
+                    <SignIn 
+                    setLoggedUser={setLoggedUser}
+                    />
                     :
                     <SignUpContainer 
                         setAccounts={setAccounts}

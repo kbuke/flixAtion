@@ -20,7 +20,7 @@ app = Flask(
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.json.compact = False
-app.secret_key = os.environ.get("app_secret_key")
+app.secret_key = os.environ.get("secret_key")
 
 # Add upload folder configuration
 app.config['UPLOAD_FOLDER'] = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'uploads')

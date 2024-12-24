@@ -21,12 +21,18 @@ class AllUsers(Resource):
         return users, 200 
     
     def post(self):
-        json=request.get_json()
+        json = request.get_json()
+        print("Received JSON:", json)  # Debugging
         try:
-            #Check if the email is already registered
-            if Accounts.query.filter_by(email=json.get("newUserEmail")):
+            # Check if the email is already registered
+            if Accounts.query.filter_by(email=json.get("newUserEmail")).first():
                 return {"error": "Email already registered"}, 400
-            
+        
+            # Check if passwords match
+            if json.get("newUserPassword") != json.get("confirmPassword"):
+                return {"error": "Passwords do not match"}, 400
+        
+            # Create a new user
             new_user = Accounts(
                 email=json.get("newUserEmail"),
                 first_name=json.get("newUserFirstName"),
@@ -34,12 +40,15 @@ class AllUsers(Resource):
                 intro=json.get("newUserIntro"),
                 account_type=json.get("newUserType")
             )
-            new_user.password_hash=json.get("newUserPassword")
+            new_user.password_hash = json.get("newUserPassword")
             db.session.add(new_user)
             db.session.commit()
+
             return new_user.to_dict(), 201
+    
         except ValueError as e:
             return {"error": [str(e)]}, 400
+
 
 class Login(Resource):
     def post(self):
