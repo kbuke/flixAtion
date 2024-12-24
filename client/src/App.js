@@ -1,4 +1,5 @@
 
+import { Outlet } from 'react-router-dom';
 import './App.css';
 import { useEffect, useState } from 'react';
 
@@ -29,6 +30,20 @@ function App() {
   }, [])
 
   console.log(loggedUser)
+
+  return(
+    <div>
+      <Outlet 
+        context={{
+          accounts: accounts,
+          setAccounts: setAccounts,
+
+          loggedUser: loggedUser, 
+          setLoggedUser: setLoggedUser
+        }}
+      />
+    </div>
+  )
 }
 
 export default App;

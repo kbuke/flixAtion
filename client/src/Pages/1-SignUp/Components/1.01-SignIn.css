@@ -1,0 +1,22 @@
+.userSignInInputs{
+    margin-left: 20px;
+}
+
+.userSignInInputContainer{
+    margin-top: 10px;
+}
+
+#signInButton{
+    border-radius: 20px;
+}
+
+#signInButton{
+    border: none;
+    margin-top: 10px;
+    width: 80px;
+    justify-self: center;
+    align-self: center;
+    height: 30px;
+    background-color: rgb(8, 217, 54);
+    color: white;
+}
